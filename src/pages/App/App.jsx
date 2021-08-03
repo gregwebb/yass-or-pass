@@ -3,7 +3,9 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
-import userService from '../../utils/userService'
+import userService from '../../utils/userService';
+import Feed from '../Feed/Feed';
+import Navigation from '../../components/Navigation/Navigation';
 
 
 function App() {
@@ -34,7 +36,7 @@ function App() {
             <> 
              <Switch>
                 <Route exact path="/">
-                Hello {user.username}
+                  <Feed handleLogout={handleLogout} user={user} />
                 </Route>
             </Switch>
             </>

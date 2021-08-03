@@ -118,14 +118,14 @@ export default function SignUpPage(props){
                     <FormGroup row>
                         <select name="emoji" defaultValue="" value={state.emoji} onChange={handleChange} required>
                             <option disabled={true} value="">Pick an emoji</option>
-                            <option value="1">👻</option>
-                            <option value="2">👽</option>
-                            <option value="3">🧑</option>
-                            <option value="4">👩</option>
-                            <option value="5">👨</option>
-                            <option value="6">🧓</option>
-                            <option value="7">👵</option>
-                            <option value="8">👴</option>                          
+                            <option value="0">👻</option>
+                            <option value="1">👽</option>
+                            <option value="2">🧑</option>
+                            <option value="3">👩</option>
+                            <option value="4">👨</option>
+                            <option value="5">🧓</option>
+                            <option value="6">👵</option>
+                            <option value="7">👴</option>                          
                         </select>
                     </FormGroup>
                     <Button

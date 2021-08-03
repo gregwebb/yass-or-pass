@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
+
+.nav {
+    position: absolute;
+    top: 0;
+} 
+
+.logout {
+    line-height: 45px; 
+    font-size: 24px;
+    font-family: Pattaya;
+    float: right;
+}
+
+.emoji {
+    border-radius: 50%;
+    background: #499ae6;
+    width: 45px;
+    height: 45px;
+    line-height: 45px; 
+    font-size: 24pt;
+    float: right;
+    margin-left: 5px;
+}
+
+.title {
+    letter-spacing: 5px;
+    line-height: 45px; 
+    font-family: Pattaya;
+    font-size: 26px;
+    color: rgb(211, 232, 250);
+    text-shadow: -4px 0  #57709c, 0 3px  #57709c, 2px 0  #57709c, 0 -4px  #57709c;
+    margin-left: auto;
+}
+
+.yass-title {
+    float:left;
+}
+
+.or-title {
+    float:left;
+    font-size: 15px;
+    text-shadow: -2px 0  #57709c, 0 1px  #57709c, 1px 0  #57709c, 0 -2px  #57709c;
+}
+.pass-title {
+    float:left;
+}
