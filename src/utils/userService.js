@@ -45,10 +45,20 @@ function login(creds) {
   .then(({token}) => tokenService.setToken(token));
 }
 
+export function getAll() {
+  return fetch(BASE_URL, {
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+  })
+  .then(res => res.json());
+}
+
 
 export default {
   signup, 
   logout,
   login,
-  getUser
+  getUser,
+  getAll,
 };

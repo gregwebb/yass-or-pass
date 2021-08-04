@@ -5,6 +5,7 @@ import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
 import Feed from '../Feed/Feed';
+import Vibe from '../../components/Vibe/Vibe';
 import Navigation from '../../components/Navigation/Navigation';
 
 

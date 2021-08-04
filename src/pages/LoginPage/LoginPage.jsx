@@ -51,9 +51,7 @@ export default function LoginPage(props) {
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h2" color="blue" textAlign="center">
-            <Image src="favicon.ico" /> Welcome to Yass or Pass
-          </Header>
+        <Image src='yass.png' />  
           <Form autoComplete="off" onSubmit={handleSubmit}>
             <Segment stacked>
               <Form.Input

@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
+.feed-container {
+    background-color: rgb(109, 141, 182);
+}
+  
+.vibe {
+    width: 35%;
+    float: right;
+    border-radius: 25px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: whitesmoke;
+    margin-right: 10px;
+    font-family: Pattaya;
+    font-size: 18pt;
+    padding: 10px;
+}
+
+.post-container {
+    width: 60%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.posts {
+    border-radius: 25px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: whitesmoke;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.vibe-card {
+    border-radius: 25px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: whitesmoke;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #499ae6;
+}
+
+.post-card {
+    border-radius: 25px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: whitesmoke;
+    margin: 10px;
+    background: #499ae6; 
+}

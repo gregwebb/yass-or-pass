@@ -79,9 +79,7 @@ export default function SignUpPage(props){
         <>
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-              <Header as='h2' color='teal' textAlign='center'>
-                <Image src='favicon.ico' /> Sign Up    
-              </Header>            
+                <Image src='yass.png' />           
                 <Form autoComplete="off"  onSubmit={handleSubmit}>
                 <Segment stacked>               
                     <Form.Input                    
@@ -128,9 +126,13 @@ export default function SignUpPage(props){
                             <option value="7">👴</option>                          
                         </select>
                     </FormGroup>
+                    <br/>
                     <Button
-                      type="submit"
-                      className="btn"
+                    color="blue"
+                    fluid
+                    size="large"
+                    type="submit"
+                    className="btn"
                     >
                     Signup
                   </Button>
