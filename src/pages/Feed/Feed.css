@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
 .feed-container {
     background-color: rgb(109, 141, 182);
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -142px;
 }
   
 .vibe {
@@ -10,16 +14,18 @@
     border-width: 1px;
     border-style: solid;
     border-color: whitesmoke;
-    margin-right: 10px;
     font-family: Pattaya;
-    font-size: 18pt;
+    font-size: 12pt;
     padding: 10px;
+    margin-right: 1px;
+    background-color: rgb(110, 165, 199);
+    padding-bottom: 30px;
 }
 
 .post-container {
-    width: 60%;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 2px;
+    width: 64%;
+    background-color: rgb(109, 141, 182);
 }
 
 .posts {
@@ -31,15 +37,7 @@
     margin-bottom: 10px;
 }
 
-.vibe-card {
-    border-radius: 25px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: whitesmoke;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background: #499ae6;
-}
+
 
 .post-card {
     border-radius: 25px;
@@ -48,4 +46,10 @@
     border-color: whitesmoke;
     margin: 10px;
     background: #499ae6; 
+}
+
+
+body, html {
+    height: 100%;
+    background-color: rgb(109, 141, 182);
 }

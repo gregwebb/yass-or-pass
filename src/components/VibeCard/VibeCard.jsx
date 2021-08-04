@@ -1,17 +1,36 @@
 import React from "react";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Button, Card, Icon, Item, Image } from "semantic-ui-react";
+import './VibeCard.css';
 
-function PostCard({ post }) {
- 
-
-    const clickHandler = 0;
+function VibeCard({ user }) {
+    const emojis = ["👻","👽","🧑","👩","👨","🧓","👵","👴"];
 
 
     return (
-        <div className="post-card">
-          {post.user.username}
-        </div>
+        <>
+        <div class="ui divider"></div>
+        <Item.Group divided>
+        <Item>
+                <div className="emoji-vibe">
+                {emojis[user.emoji]}
+            </div> 
+  
+        <Item.Content>
+          <Item.Header>
+          <span className='user'>{user.username} </span> 
+
+              </Item.Header>
+          <Item.Meta>
+          <span className='match'>Agrees 95%</span>
+          </Item.Meta>
+
+        </Item.Content>
+      </Item>
+      </Item.Group>
+      </>
+
+
       );
 }
 
-export default PostCard;
+export default VibeCard;

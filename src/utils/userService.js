@@ -46,7 +46,7 @@ function login(creds) {
 }
 
 export function getAll() {
-  return fetch(BASE_URL, {
+  return fetch(BASE_URL + 'users', {
     headers: {
       'Authorization': 'Bearer ' + tokenService.getToken()
     }

@@ -6,16 +6,14 @@ import PostFeed from "../../components/PostFeed/PostFeed";
 import * as postsAPI from "../../utils/postApi";
 import * as userService from "../../utils/userService";
 import Vibe from '../../components/Vibe/Vibe';
+import Footer from '../../components/Footer/Footer';
 
 export default function Feed({ user, handleLogout}) {
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
 
-async function handleAddPost(post) {
-    console.log(post);
-    const data = await postsAPI.create(post);
-    console.log(data.post, " This is newPup", data, " data var");
-    setPosts((posts) => [data.post, ...posts]);
+    function handleAddPost(post){
+        const data = postsAPI.create(post);
     }
 
 async function getPosts() {
@@ -29,7 +27,7 @@ async function getPosts() {
 
   async function getUsers() {
     try {
-      const data = await postsAPI.getAll();
+      const data = await userService.getAll();
       setUsers([...data.users]);
     } catch (err) {
       console.log(err, " this is the error");
@@ -43,17 +41,19 @@ useEffect(() => {
 
 
     return (
+        <>
         <div className="feed-container">
              <Navigation user={user.emoji} handleLogout={handleLogout} />
              <div className="vibe-container">
-                 <Vibe posts={posts} />
+                 <Vibe users={users} />
             </div>
              <div className="post-container">
-                 <AddPostForm handleAddPost={handleAddPost}/> 
+                 <AddPostForm handleAddPost={handleAddPost} user={user}/> 
                  <PostFeed posts={posts}/>
             </div>
-
          </div>
+
+                     </>
     )
 }
 

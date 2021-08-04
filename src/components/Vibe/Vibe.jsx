@@ -3,17 +3,28 @@ import { Card, Loader, Grid, Dimmer, Segment, Image } from "semantic-ui-react";
 import VibeCard from "../VibeCard/VibeCard";
 
 export default function Vibe({
-  posts,
+  users,
 }) {
   return (
     <div className = "vibe">
-
-      {posts.map((post) => {
+      You Vibe With
+      <br />
+      {users.map((user) => {
         return (
           <VibeCard
-            post={post}
+            user={user}
 
           />
+          
+        );
+      })}
+            {users.map((user) => {
+        return (
+          <VibeCard
+            user={user}
+
+          />
+          
         );
       })}
     </div>

@@ -1,61 +1,51 @@
 import React, { useState } from 'react';
-import { Button, Form, Grid, Segment } from 'semantic-ui-react'
+import { Button, Dropdown, Form, Grid, Header, Image, Segment } from 'semantic-ui-react';
 
-export default function AddPostForm(props){
-  const [state, setState] = useState({
-    content: ''
-  })
-  const [content, setContent] = useState({
-    content: ''
-  })
-
-
-  function handleChange(e){
-    setContent({
-      ...state,
-      [e.target.name]: e.target.value
+export default function AddPostForm(props, {user}){
+    const [state, setState] = useState({
+        content: ""
     })
-  }
 
-  function handleSubmit(e){
-    e.preventDefault()
-    const formData = new FormData()
-    formData.append('content', state.content)
-    props.handleAddPost(formData)
-  }
+    function handleChange(e) {
+        setState({
+          ...state,
+          [e.target.name]: e.target.value,
+        });
+      }
 
+    function handleSubmit(e){
+        e.preventDefault();
+        const post = state;
+        console.log(state);
+        console.log(post)
+        props.handleAddPost(post)
+    }
 
-  return (
-    
-    <Grid textAlign='center' verticalAlign='middle'>
+    return (
+    <>
+    <Grid textAlign='center'>
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Segment>
-    
-
-            <Form  autoComplete="off" onSubmit={handleSubmit}>
-            
-
+          <Form autoComplete="off"  onSubmit={handleSubmit}>            
               <Form.Input
-                  className="form-control"
-                  name="content"
-                  value={content.content}
-                  placeholder="Ask about something here..."
-                  onChange={handleChange}
-                  required
-              />  
-
-
-            
+              name="content"
+              placeholder="Ask about something here..."
+              value={state.content}
+              onChange={handleChange}
+              required
+              />
               <Button
-                type="submit"
-                className="btn"
-              >
-                See what people think
-              </Button>
-            </Form>
-          </Segment>
-      </Grid.Column>
-    </Grid>
-   
-  ); 
+              type="submit"
+              className="btn">
+                  See what people think
+                  </Button>
+                  </Form>
+                  </Grid.Column>
+                  </Grid>
+
+        </>
+    )
+
+
+
+
 }
