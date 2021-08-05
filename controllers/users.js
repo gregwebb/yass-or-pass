@@ -9,15 +9,12 @@ module.exports = {
 };
 
 async function signup(req, res) {
-  console.log(req.body)
-  
   const user = new User(req.body);
     try {
       await user.save();
       const token = createJWT(user); // user is the payload so this is the object in our jwt
       res.json({ token });
     } catch (err) {
-      // Probably a duplicate email
       res.status(400).json(err);
     }
   }

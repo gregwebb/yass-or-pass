@@ -8,24 +8,25 @@
 }
   
 .vibe {
-    width: 35%;
+    width: 25%;
     float: right;
     border-radius: 25px;
-    border-width: 1px;
+    border-width: 2px;
     border-style: solid;
     border-color: whitesmoke;
     font-family: Pattaya;
     font-size: 12pt;
-    padding: 10px;
-    margin-right: 1px;
+    padding: 5px;
+    margin-right: 3px;
     background-color: rgb(110, 165, 199);
     padding-bottom: 30px;
 }
 
 .post-container {
-    margin-left: 2px;
-    width: 64%;
+    margin-left: 3px;
+    width: 73%;
     background-color: rgb(109, 141, 182);
+    padding-bottom: 30px;
 }
 
 .posts {

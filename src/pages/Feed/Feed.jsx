@@ -12,9 +12,14 @@ import * as dislikesAPI from "../../utils/dislikesApi";
 export default function Feed({ user, handleLogout}) {
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
-    
-    function handleAddPost(post){
-      const data = postsAPI.create(post);
+    const [loading, setLoading] = useState(false);
+
+
+    async function handleAddPost(post) {
+      setLoading(true);
+      const data = await postsAPI.create(post);
+      setPosts((posts) => [data.post, ...posts]);
+      setLoading(false);
     }
 
 async function getPosts() {

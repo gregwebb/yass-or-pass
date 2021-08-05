@@ -16,9 +16,8 @@ export default function AddPostForm(props, {user}){
     function handleSubmit(e){
         e.preventDefault();
         const post = state;
-        console.log(state);
-        console.log(post)
         props.handleAddPost(post)
+        setState({ content: ''})
     }
 
     return (

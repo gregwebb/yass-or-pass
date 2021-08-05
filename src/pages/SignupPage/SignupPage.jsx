@@ -28,7 +28,6 @@ export default function SignUpPage(props){
 
   async function handleSubmit(e){
     e.preventDefault();
-
     try {
       await userService.signup(state);
       props.handleSignUpOrLogin()

@@ -10,13 +10,13 @@
 
 .vibe-card {
     border-radius: 25px;
-    border-width: 1px;
+    border-width: 3px;
     border-style: solid;
     border-color: whitesmoke;
     margin-top: 10px;
     margin-bottom: 10px;
     background: #499ae6;
-    padding: 20px;
+    padding: 10px;
 }
 
 .user {
@@ -24,11 +24,10 @@
 }
 
 .match {
-    margin-left: 10px;
     font-size: 10pt;
     border-radius: 15px;
-    border-width: 1px;
+    border-width: 2px;
     border-style: solid;
     border-color: whitesmoke;
-    padding: 5px;
+    padding: 5px 20px;
 }

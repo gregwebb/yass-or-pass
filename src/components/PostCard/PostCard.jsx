@@ -41,14 +41,15 @@ function PostCard({ post, addLike, removeLike, user, addDislike, removeDislike }
     {likeInfo ? (
       <true>
         <div className="vote">
-         <Progress percent={likePercent} color={barColor} size="tiny" />
-         <Icon name={likeIcon} size="large" color="green"/>
+         <Progress percent={likePercent} color={barColor} size="tiny"/>
+         <Icon name={likeIcon} size="small" color="green"/>
          {likePercent}% &nbsp;
-         <Icon name={dislikeIcon} size="large" color="red"/>
+         <Icon name={dislikeIcon} size="small" color="red"/>
          {dislikePercent}% &nbsp;
-         <Icon name="undo" size="large" color="blue" onClick={resetClickHandler}/>
-         </div>
+         <Icon name="undo" size="small" color="blue" onClick={resetClickHandler}/>
          <div className="vote-count">({votes} users have voted)</div>
+         </div>
+         
         </true>
       ) :
       

@@ -11,6 +11,8 @@ module.exports = {
           user: req.user,
         });
         const populatedPost = await post.populate("user").execPopulate();
+        post.user = req.user;
+        post.save()
         res.status(201).json({ post: populatedPost });
   }
   
