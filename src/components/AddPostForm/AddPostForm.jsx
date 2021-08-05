@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, Form, Grid, Header, Image, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid} from 'semantic-ui-react';
 
 export default function AddPostForm(props, {user}){
     const [state, setState] = useState({
@@ -22,7 +22,6 @@ export default function AddPostForm(props, {user}){
     }
 
     return (
-    <>
     <Grid textAlign='center'>
       <Grid.Column style={{ maxWidth: 450 }}>
           <Form autoComplete="off"  onSubmit={handleSubmit}>            
@@ -41,8 +40,6 @@ export default function AddPostForm(props, {user}){
                   </Form>
                   </Grid.Column>
                   </Grid>
-
-        </>
     )
 
 

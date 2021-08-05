@@ -5,8 +5,6 @@ import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
 import Feed from '../Feed/Feed';
-import Vibe from '../../components/Vibe/Vibe';
-import Navigation from '../../components/Navigation/Navigation';
 
 
 function App() {
@@ -33,17 +31,15 @@ function App() {
           <Route exact path="/signup">
              <SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>
           </Route>
-          {userService.getUser() ? 
-            <> 
+          {userService.getUser() ? (
              <Switch>
                 <Route exact path="/">
                   <Feed handleLogout={handleLogout} user={user} />
                 </Route>
             </Switch>
-            </>
-            :
+           ) : (
             <Redirect to='/login'/>
-          }
+           )}
   
       </Switch>
     </div>

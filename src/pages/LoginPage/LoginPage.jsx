@@ -7,7 +7,6 @@ import {
   Button,
   Form,
   Grid,
-  Header,
   Image,
   Message,
   Segment,
@@ -44,7 +43,7 @@ export default function LoginPage(props) {
   }
 
   return (
-    <>
+    <login>
       <Grid
         textAlign="center"
         style={{ height: "100vh" }}
@@ -87,6 +86,6 @@ export default function LoginPage(props) {
           {error ? <ErrorMessage error={error} /> : null}
         </Grid.Column>
       </Grid>
-    </>
+    </login>
   );
 }

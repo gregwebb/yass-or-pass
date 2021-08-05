@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Image, Segment } from 'semantic-ui-react'
 import userService from '../../utils/userService';
 import { useHistory } from 'react-router-dom';
-import { Col, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { FormGroup } from 'reactstrap';
 
 
 export default function SignUpPage(props){
  
   const [error, setError ] = useState('')
-  const [selectedFile, setSelectedFile] = useState('')
   const [state, setState]  = useState({
     username: '',
     email: '',
@@ -20,10 +19,6 @@ export default function SignUpPage(props){
 
   const history = useHistory()
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggle = () => setDropdownOpen(prevState => !prevState);
-
   function handleChange(e){
     setState({
       ...state,
@@ -32,51 +27,19 @@ export default function SignUpPage(props){
   }
 
   async function handleSubmit(e){
-    // add this later
     e.preventDefault();
 
-    // Photos have to be sent over as FormData
-    // They send over the form in multiparts (multipe requests to the server)
-
-    const formData = new FormData();
-
-
-    // generating rest of form data by looping over the state object!
-    for (let key in state){
-      formData.append(key, state[key])
-    }
-    //fyi if you log out formData you won't see anything you have to use the folllowing
-
-    // Display the key/value pairs
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0]+ ', ' + pair[1]); 
-    // }
-
-    // SO now we have are data prepared to send over in our formData object
     try {
-      // refere to the utils/userService, to look at the signup fetch function
-      await userService.signup(formData);
-      // setTheUser in our app
-      props.handleSignUpOrLogin() // gets the token from localstorage and updates the user state in our app.js
-      // with the correct user object from the current token
-      // then route to the homepage
-      history.push('/') // defined above from react-router-dom
-      // after this we can go whereever
-
+      await userService.signup(state);
+      props.handleSignUpOrLogin()
+      history.push('/') 
     } catch(err){
       console.log(err.message)
       setError(err.message)
     }
-
-  }
-
-  function handleFileInput(e){
-    setSelectedFile(e.target.files[0])
   }
  
-    
     return (
-        <>
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
                 <Image src='yass.png' />           
@@ -139,10 +102,6 @@ export default function SignUpPage(props){
                   </Segment>
                   {error ? <ErrorMessage error={error} /> : null}
                 </Form>
-               
             </Grid.Column>
           </Grid>
-        </>
-      );   
-    
-}
+      )};   

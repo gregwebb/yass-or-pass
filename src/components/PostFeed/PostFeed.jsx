@@ -1,9 +1,8 @@
 import React from "react";
-import { Card, Loader, Grid, Dimmer, Segment, Image } from "semantic-ui-react";
 import PostCard from "../PostCard/PostCard";
 
 export default function PostFeed({
-  posts,
+  posts, user, addLike, removeLike, addDislike, removeDislike
 }) {
   return (
     <div className = "posts">
@@ -11,7 +10,7 @@ export default function PostFeed({
       {posts.map((post) => {
         return (
           <PostCard
-            post={post}
+            post={post} user={user} addLike={addLike} removeLike={removeLike} addDislike={addDislike} removeDislike={removeDislike}
 
           />
         );

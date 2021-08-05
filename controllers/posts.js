@@ -1,6 +1,5 @@
 const Post = require("../models/post");
 
-
 module.exports = {
     create,
     index,
@@ -21,4 +20,5 @@ module.exports = {
       res.status(200).json({ posts });
     } catch (err) {}
   }
+
 

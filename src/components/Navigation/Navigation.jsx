@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { Header, Segment, Image, Icon } from 'semantic-ui-react';
+import { Segment} from 'semantic-ui-react';
 import './Navigation.css';
 
 const emojis = ["👻","👽","🧑","👩","👨","🧓","👵","👴"];

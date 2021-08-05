@@ -1,14 +1,14 @@
 import React from "react";
-import { Button, Card, Icon, Item, Image } from "semantic-ui-react";
+import { Item } from "semantic-ui-react";
 import './VibeCard.css';
 
-function VibeCard({ user }) {
+function VibeCard({ user, posts, users }) {
     const emojis = ["👻","👽","🧑","👩","👨","🧓","👵","👴"];
 
 
     return (
-        <>
-        <div class="ui divider"></div>
+        <div className="test">
+        <div className="ui divider"></div>
         <Item.Group divided>
         <Item>
                 <div className="emoji-vibe">
@@ -27,7 +27,7 @@ function VibeCard({ user }) {
         </Item.Content>
       </Item>
       </Item.Group>
-      </>
+      </div>
 
 
       );

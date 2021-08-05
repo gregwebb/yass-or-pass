@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const yassSchema = mongoose.Schema({
+const likeSchema = mongoose.Schema({
   username: String,
   userId: { type: mongoose.Schema.Types.ObjectId }
 })
 
-const passSchema = mongoose.Schema({
+const dislikeSchema = mongoose.Schema({
     username: String,
     userId: { type: mongoose.Schema.Types.ObjectId }
   })
@@ -13,8 +13,8 @@ const passSchema = mongoose.Schema({
 const postSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     content: String,
-    yass: [yassSchema],
-    pass: [passSchema]
+    likes: [likeSchema],
+    dislikes: [dislikeSchema]
   })
  
 

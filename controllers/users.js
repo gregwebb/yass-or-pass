@@ -1,10 +1,6 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
-const { v4: uuidv4 } = require('uuid');
-const S3 = require('aws-sdk/clients/s3');
-const s3 = new S3(); // initialize the construcotr
-// now s3 can crud on our s3 buckets
 
 module.exports = {
   signup,
@@ -12,11 +8,12 @@ module.exports = {
   index
 };
 
-function signup(req, res) {
-  console.log(req.body, req.file)
-    const user = new User({...req.body});
+async function signup(req, res) {
+  console.log(req.body)
+  
+  const user = new User(req.body);
     try {
-      user.save();
+      await user.save();
       const token = createJWT(user); // user is the payload so this is the object in our jwt
       res.json({ token });
     } catch (err) {
@@ -24,7 +21,6 @@ function signup(req, res) {
       res.status(400).json(err);
     }
   }
-
 
 async function login(req, res) {
   try {

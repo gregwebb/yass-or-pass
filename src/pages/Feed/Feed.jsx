@@ -6,14 +6,15 @@ import PostFeed from "../../components/PostFeed/PostFeed";
 import * as postsAPI from "../../utils/postApi";
 import * as userService from "../../utils/userService";
 import Vibe from '../../components/Vibe/Vibe';
-import Footer from '../../components/Footer/Footer';
+import * as likesAPI from "../../utils/likesApi";
+import * as dislikesAPI from "../../utils/dislikesApi";
 
 export default function Feed({ user, handleLogout}) {
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
-
+    
     function handleAddPost(post){
-        const data = postsAPI.create(post);
+      const data = postsAPI.create(post);
     }
 
 async function getPosts() {
@@ -34,6 +35,44 @@ async function getPosts() {
     }
   }
 
+  async function addLike(postId) {
+    try {
+      const data = await likesAPI.create(postId);
+      console.log(data, " this is from addLike");
+      getPosts();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function removeLike(likeID) {
+    try {
+      const data = await likesAPI.removeLike(likeID);
+      getPosts();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function addDislike(postId) {
+    try {
+      const data = await dislikesAPI.create(postId);
+      console.log(data, " this is from addDislike");
+      getPosts();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function removeDislike(dislikeID) {
+    try {
+      const data = await dislikesAPI.removeDislike(dislikeID);
+      getPosts();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
 useEffect(() => {
     getPosts();
     getUsers();
@@ -41,19 +80,19 @@ useEffect(() => {
 
 
     return (
-        <>
+   
         <div className="feed-container">
              <Navigation user={user.emoji} handleLogout={handleLogout} />
              <div className="vibe-container">
-                 <Vibe users={users} />
+                 <Vibe users={users} posts ={posts} user={user}/>
             </div>
              <div className="post-container">
                  <AddPostForm handleAddPost={handleAddPost} user={user}/> 
-                 <PostFeed posts={posts}/>
+                 <PostFeed posts={posts} user={user} addLike={addLike} removeLike={removeLike} addDislike={addDislike} removeDislike={removeDislike}/>
             </div>
          </div>
 
-                     </>
+             
     )
 }
 
