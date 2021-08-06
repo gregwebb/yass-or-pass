@@ -14,5 +14,5 @@ export function getAll(){
 
 export default {
     create,
-    getAll
+    getAll,
   };

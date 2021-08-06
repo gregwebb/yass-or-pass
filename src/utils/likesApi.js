@@ -20,3 +20,11 @@ export function removeLike(id){
           }
     }).then(res => res.json());
 }
+
+export function getAll(){
+  return fetch(BASE_URL).then(res => res.json());
+}
+
+export function votedPosts(){
+    return fetch('${BASE_URL}/liked/').then(res => res.json());
+  }

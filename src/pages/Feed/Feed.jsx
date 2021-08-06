@@ -18,6 +18,7 @@ export default function Feed({ user, handleLogout}) {
     async function handleAddPost(post) {
       setLoading(true);
       const data = await postsAPI.create(post);
+      console.log(data);
       setPosts((posts) => [data.post, ...posts]);
       setLoading(false);
     }
@@ -25,7 +26,7 @@ export default function Feed({ user, handleLogout}) {
 async function getPosts() {
     try {
       const data = await postsAPI.getAll();
-      setPosts([...data.posts]);
+      setPosts([...data.posts]); 
     } catch (err) {
       console.log(err, " this is the error");
     }
