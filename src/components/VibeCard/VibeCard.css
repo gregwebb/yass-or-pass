@@ -1,33 +1,15 @@
-.emoji-vibe {
-    border-radius: 50%;
-    background: #6f27ce;
-    width: 40px;
-    height: 40px;
-    line-height: 41px; 
-    font-size: 20pt;
-
+.name {
+  font-size: 12pt;
 }
 
-.vibe-card {
-    border-radius: 25px;
-    border-width: 3px;
-    border-style: solid;
-    border-color: whitesmoke;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background: #499ae6;
-    padding: 10px;
-}
-
-.user {
-    font-size: 16pt;
-}
-
-.match {
+@media only screen and (max-width: 450px) {
+  .name {
     font-size: 10pt;
-    border-radius: 15px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: whitesmoke;
-    padding: 5px 20px;
+  }
 }
+
+@media only screen and (max-width: 400px) {
+    .name {
+      font-size: 7pt;
+    }
+  }

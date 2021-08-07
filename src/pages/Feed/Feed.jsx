@@ -1,42 +1,41 @@
 import React, { useState, useEffect } from "react";
-import Navigation from '../../components/Navigation/Navigation';
+import Navigation from "../../components/Navigation/Navigation";
 import AddPostForm from "../../components/AddPostForm/AddPostForm";
 import "./Feed.css";
 import PostFeed from "../../components/PostFeed/PostFeed";
 import * as postsAPI from "../../utils/postApi";
 import * as userService from "../../utils/userService";
-import Vibe from '../../components/Vibe/Vibe';
+import Vibe from "../../components/Vibe/Vibe";
 import * as likesAPI from "../../utils/likesApi";
 import * as dislikesAPI from "../../utils/dislikesApi";
 
-export default function Feed({ user, handleLogout}) {
-    const [posts, setPosts] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [matches, setMatches] = useState([]);
-    const [loading, setLoading] = useState(false);
+export default function Feed({ user, handleLogout }) {
+  const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [matches, setMatches] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  async function handleAddPost(post) {
+    setLoading(true);
+    const data = await postsAPI.create(post);
+    console.log(data);
+    setPosts((posts) => [data.post, ...posts]);
+    setLoading(false);
+  }
 
-    async function handleAddPost(post) {
-      setLoading(true);
-      const data = await postsAPI.create(post);
-      console.log(data);
-      setPosts((posts) => [data.post, ...posts]);
-      setLoading(false);
+  async function getMatches() {
+    try {
+      const data = await likesAPI.getMatches();
+      setMatches([...data.matches]);
+    } catch (err) {
+      console.log(err, " this is the error");
     }
+  }
 
-async function getMatches() {
-  try {
-    const data = await likesAPI.getMatches();
-    setMatches([...data.matches]); 
-  } catch (err) {
-    console.log(err, " this is the error");
-      }
-    }
-
-async function getPosts() {
+  async function getPosts() {
     try {
       const data = await postsAPI.getAll();
-      setPosts([...data.posts]); 
+      setPosts([...data.posts]);
     } catch (err) {
       console.log(err, " this is the error");
     }
@@ -89,29 +88,27 @@ async function getPosts() {
     }
   }
 
-useEffect(() => {
+  useEffect(() => {
     getPosts();
     getUsers();
     getMatches();
   }, []);
 
-
-    return (
-   
-        <div className="feed-container">
-             <Navigation user={user.emoji} handleLogout={handleLogout} />
-             <div className="vibe-container">
-                 <Vibe users={users} posts ={posts} user={user} matches={matches}/>
-            </div>
-             <div className="post-container">
-                 <AddPostForm handleAddPost={handleAddPost} user={user}/> 
-                 <PostFeed posts={posts} user={user} addLike={addLike} removeLike={removeLike} addDislike={addDislike} removeDislike={removeDislike}/>
-            </div>
-         </div>
-
-             
-    )
+  return (
+    <div className="feed-container">
+      <Navigation user={user.emoji} handleLogout={handleLogout} />
+      <Vibe users={users} posts={posts} user={user} matches={matches} />
+      <div className="post-container">
+        <AddPostForm handleAddPost={handleAddPost} user={user} />
+        <PostFeed
+          posts={posts}
+          user={user}
+          addLike={addLike}
+          removeLike={removeLike}
+          addDislike={addDislike}
+          removeDislike={removeDislike}
+        />
+      </div>
+    </div>
+  );
 }
-
-
-

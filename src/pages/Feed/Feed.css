@@ -1,64 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
 .feed-container {
-    background-color: rgb(109, 141, 182);
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -142px;
-}
-  
-.vibe {
-    width: 25%;
-    float: right;
-    border-radius: 25px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: whitesmoke;
-    font-family: Pattaya;
-    font-size: 12pt;
-    padding: 5px;
-    margin-right: 3px;
-    background-color: rgb(110, 165, 199);
-    padding-bottom: 30px;
+  background-color: rgb(109, 141, 182);
 }
 
 .post-container {
-    margin-left: 3px;
-    width: 73%;
-    background-color: rgb(109, 141, 182);
-    padding-bottom: 30px;
+  padding: 10px 20px;
 }
 
 .posts {
-    border-radius: 25px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: whitesmoke;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-
-
-.post-card {
-    border-radius: 25px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: whitesmoke;
-    margin: 10px;
-    background: #499ae6; 
-}
-
-
-body, html {
-    height: 100%;
-    background-color: rgb(109, 141, 182);
+  padding: 20px 0px 40px;
 }
 
 .vote-count {
-    text-align: right;
+  text-align: right;
 }
 
 .vote {
-    text-align: left;
+  text-align: left;
+}
+
+.vibe {
+  padding: 5px 20px 10px;
+  text-align: center;
 }

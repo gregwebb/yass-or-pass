@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import VibeCard from "../VibeCard/VibeCard";
 import * as likesAPI from "../../utils/likesApi";
+import { Item, Label, Card } from "semantic-ui-react";
 
 export default function Vibe({
   users, user, matches
@@ -10,19 +11,18 @@ export default function Vibe({
 
 
   return (
-    <div className = "vibe">
-      You Vibe With
-      <br />
+    <div className="vibe">
+      {matches.length > 3 &&
+      <Card.Group itemsPerRow={4}>
       {matches.map((match) => {
         return (
           <VibeCard
             user={match} posts = {posts} match = {match}
-
           />
-          
         );
-      })}
-
-    </div>
+      })
+    }
+    </Card.Group>
+}</div>
   );
 }

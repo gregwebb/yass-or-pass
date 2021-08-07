@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import "./LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 import { useHistory, Link } from "react-router-dom";
-import {
-  Button,
-  Form,
-  Grid,
-  Image,
-  Message,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Form, Grid, Image, Message, Segment } from "semantic-ui-react";
 
 export default function LoginPage(props) {
   const [error, setError] = useState("");
@@ -33,11 +25,9 @@ export default function LoginPage(props) {
 
     try {
       await userService.login(state);
-      // Route to wherever you want!
       props.handleSignUpOrLogin();
       history.push("/");
     } catch (err) {
-      // Invalid user data (probably duplicate email)
       setError(err.message);
     }
   }
@@ -50,7 +40,7 @@ export default function LoginPage(props) {
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
-        <Image src='yass.png' />  
+          <Image src="yass.png" />
           <Form autoComplete="off" onSubmit={handleSubmit}>
             <Segment stacked>
               <Form.Input

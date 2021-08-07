@@ -1,37 +1,25 @@
 import React from "react";
-import { Item } from "semantic-ui-react";
-import './VibeCard.css';
+import { Card, Icon } from "semantic-ui-react";
+import "./VibeCard.css";
 
 function VibeCard({ user, posts, users, match, matches }) {
-    const emojis = ["👻","👽","🧑","👩","👨","🧓","👵","👴"];
+  const emojis = ["👻", "👽", "🧑", "👩", "👨", "🧓", "👵", "👴"];
 
-
-    return (
-        <div className="test">
-        <div className="ui divider"></div>
-        <Item.Group divided>
-        <Item>
-                <div className="emoji-vibe">
-                {emojis[user.emoji]}
-                {match[0]}
-            </div> 
-  
-        <Item.Content>
-          <Item.Header>
-          <span className='user'>{match[0]} </span> 
-
-              </Item.Header>
-          <Item.Meta>
-          <span className='match'>{match[1]}%</span>
-          </Item.Meta>
-
-        </Item.Content>
-      </Item>
-      </Item.Group>
-      </div>
-
-
-      );
+  return (
+    <Card>
+      <Card.Content>
+        <Card.Header textAlign="center">
+          <div className="name">{match[0]}</div>
+        </Card.Header>
+      </Card.Content>
+      <Card.Content extra>
+        <a>
+          <Icon name="handshake outline" size="large" color="purple" />
+          {(match[1] * 100).toFixed(0)}%
+        </a>
+      </Card.Content>
+    </Card>
+  );
 }
 
 export default VibeCard;
