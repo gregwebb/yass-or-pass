@@ -3,8 +3,9 @@ const Post = require('../models/post');
 module.exports = {
     create,
     deleteLike,
-    likedPosts
+    match
 }
+
 
 async function create(req, res){
  
@@ -33,23 +34,40 @@ async function deleteLike(req, res){
     }
 }
 
-async function likedPosts(req, res) {
+async function match(req, res) {
     try {
-      const posts = await Post.find(
-          { likes: { $elemMatch: { username: 'greg' }}});
+      const [posts, dislikedPosts] = await Promise.all([ 
+          Post.find(
+          { likes: { $elemMatch: { user: req.user }}}),
+          Post.find(
+            { dislikes: { $elemMatch: { user: req.user }}}),
+      ]);
             let total = [];
             let agree = [];
+            let disagree = [];
+    
             for (post in posts) {
                 posts[post].likes.forEach(elem => 
                     agree.push(elem.username) &&
                     total.push(elem.username));
             }
-            let disagree = [];
             for (post in posts) {
                 posts[post].dislikes.forEach(elem => 
                     disagree.push(elem.username) &&
                     total.push(elem.username));
             }
+        
+            for (post in dislikedPosts) {
+                dislikedPosts[post].dislikes.forEach(elem => 
+                    agree.push(elem.username) &&
+                    total.push(elem.username));
+            }
+            for (post in dislikedPosts) {
+                dislikedPosts[post].likes.forEach(elem => 
+                    disagree.push(elem.username) &&
+                    total.push(elem.username));
+            }
+
               let countedAgrees = agree.reduce(function (agreeTotal, agreed) {
                 if (agreed in agreeTotal) {
                   agreeTotal[agreed]++
@@ -73,10 +91,9 @@ async function likedPosts(req, res) {
               let match = [];
               Object.entries(countedAgrees).forEach(([k,v]) => {
                   let perc = (v/countedTotal[k]);
-                  let key = k;
-                  match.push({[k]: perc});
+                  match.push({[k]: perc, total: countedTotal[k]});
               })
-
+            
    
       res.status(200).json({ match });
     } catch (err) {}

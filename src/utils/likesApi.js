@@ -25,6 +25,14 @@ export function getAll(){
   return fetch(BASE_URL).then(res => res.json());
 }
 
-export function votedPosts(){
-    return fetch('${BASE_URL}/liked/').then(res => res.json());
-  }
+export function match() {
+  return fetch(`${BASE_URL}/match`, {
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+  })
+  .then(res => res.json());
+}
+
+
+  

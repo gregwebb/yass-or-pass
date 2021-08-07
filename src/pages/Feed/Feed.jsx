@@ -12,6 +12,7 @@ import * as dislikesAPI from "../../utils/dislikesApi";
 export default function Feed({ user, handleLogout}) {
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
+    const [matches, setMatches] = useState([]);
     const [loading, setLoading] = useState(false);
 
 
@@ -21,6 +22,15 @@ export default function Feed({ user, handleLogout}) {
       console.log(data);
       setPosts((posts) => [data.post, ...posts]);
       setLoading(false);
+    }
+
+async function getMatch() {
+  try {
+    const data = await likesAPI.match();
+    setMatches([...data.matches]); 
+  } catch (err) {
+    console.log(err, " this is the error");
+      }
     }
 
 async function getPosts() {
@@ -82,6 +92,7 @@ async function getPosts() {
 useEffect(() => {
     getPosts();
     getUsers();
+    getMatch();
   }, []);
 
 
@@ -90,7 +101,7 @@ useEffect(() => {
         <div className="feed-container">
              <Navigation user={user.emoji} handleLogout={handleLogout} />
              <div className="vibe-container">
-                 <Vibe users={users} posts ={posts} user={user}/>
+                 <Vibe users={users} posts ={posts} user={user} matches={matches}/>
             </div>
              <div className="post-container">
                  <AddPostForm handleAddPost={handleAddPost} user={user}/> 

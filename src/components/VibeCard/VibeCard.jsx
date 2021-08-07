@@ -2,7 +2,7 @@ import React from "react";
 import { Item } from "semantic-ui-react";
 import './VibeCard.css';
 
-function VibeCard({ user, posts, users }) {
+function VibeCard({ user, posts, users, match }) {
     const emojis = ["👻","👽","🧑","👩","👨","🧓","👵","👴"];
 
 
@@ -21,7 +21,7 @@ function VibeCard({ user, posts, users }) {
 
               </Item.Header>
           <Item.Meta>
-          <span className='match'>Agrees 95%</span>
+          <span className='match'>{match}</span>
           </Item.Meta>
 
         </Item.Content>
