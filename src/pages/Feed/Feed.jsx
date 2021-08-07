@@ -24,9 +24,9 @@ export default function Feed({ user, handleLogout}) {
       setLoading(false);
     }
 
-async function getMatch() {
+async function getMatches() {
   try {
-    const data = await likesAPI.match();
+    const data = await likesAPI.getMatches();
     setMatches([...data.matches]); 
   } catch (err) {
     console.log(err, " this is the error");
@@ -92,7 +92,7 @@ async function getPosts() {
 useEffect(() => {
     getPosts();
     getUsers();
-    getMatch();
+    getMatches();
   }, []);
 
 

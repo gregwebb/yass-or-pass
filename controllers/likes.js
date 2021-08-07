@@ -1,9 +1,10 @@
 const Post = require('../models/post');
+const User = require('../models/user');
 
 module.exports = {
     create,
     deleteLike,
-    match
+    matches
 }
 
 
@@ -34,13 +35,13 @@ async function deleteLike(req, res){
     }
 }
 
-async function match(req, res) {
+async function matches(req, res) {
     try {
       const [posts, dislikedPosts] = await Promise.all([ 
           Post.find(
-          { likes: { $elemMatch: { user: req.user }}}),
+          { likes: { $elemMatch: { username: req.user.username }}}),
           Post.find(
-            { dislikes: { $elemMatch: { user: req.user }}}),
+            { dislikes: { $elemMatch: { username: req.user.username }}}),
       ]);
             let total = [];
             let agree = [];
@@ -88,13 +89,30 @@ async function match(req, res) {
                 return counted
               }, {})
 
-              let match = [];
+              let values = [];
               Object.entries(countedAgrees).forEach(([k,v]) => {
                   let perc = (v/countedTotal[k]);
-                  match.push({[k]: perc, total: countedTotal[k]});
+                  values.push(k,perc);
               })
+
+              values = values.sort(function(b, a) {
+                  return a[1] - b[1];
+              });
+
+              let matches = [];
+              values.forEach(elem => 
+                elem[0] !== req.user.username ? 
+                    matches.push(elem):
+                    null
+                    );
             
-   
-      res.status(200).json({ match });
+              matches = matches.reduce(function(result, value, index, array) {
+                if (index % 2 === 0)
+                  result.push(array.slice(index, index + 2));
+                return result;
+              }, []);
+
+            
+      res.status(200).json({ matches });
     } catch (err) {}
   }

@@ -4,6 +4,6 @@ const likesCtrl = require('../../controllers/likes')
 
 router.post('/posts/:id/likes', likesCtrl.create)
 router.delete('/likes/:id', likesCtrl.deleteLike)
-router.get('/match', likesCtrl.match)
+router.get('/matches', likesCtrl.matches)
 
 module.exports = router;

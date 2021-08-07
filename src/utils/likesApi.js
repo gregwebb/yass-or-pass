@@ -25,14 +25,10 @@ export function getAll(){
   return fetch(BASE_URL).then(res => res.json());
 }
 
-export function match() {
-  return fetch(`${BASE_URL}/match`, {
+export function getMatches() {
+  return fetch(`${BASE_URL}/matches`, {
     headers: {
-      'Authorization': 'Bearer ' + tokenService.getToken()
-    }
-  })
-  .then(res => res.json());
+        'Authorization': 'Bearer ' + tokenService.getToken()
+      }
+}).then(res => res.json());
 }
-
-
-  

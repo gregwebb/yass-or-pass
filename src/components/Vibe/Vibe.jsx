@@ -16,7 +16,7 @@ export default function Vibe({
       {matches.map((match) => {
         return (
           <VibeCard
-            user={user} posts = {posts} match = {match}
+            user={match} posts = {posts} match = {match}
 
           />
           
