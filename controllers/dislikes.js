@@ -8,7 +8,7 @@ module.exports = {
 async function create(req, res) {
   try {
     const post = await Post.findById(req.params.id);
-    post.dislikes.push({ username: req.user.username, userId: req.user._id });
+    post.dislikes.push({ username: req.user.username, userId: req.user._id, emoji: req.user.emoji });
     await post.save();
     res.status(201).json({ data: "like added" });
   } catch (err) {

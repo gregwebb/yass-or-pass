@@ -9,8 +9,12 @@ module.exports = {
 async function create(req, res) {
   try {
     const post = await Post.findById(req.params.id);
-    post.likes.push({ username: req.user.username, userId: req.user._id }); //mutating a document
-    await post.save(); // save it
+    post.likes.push({
+      username: req.user.username,
+      userId: req.user._id,
+      emoji: req.user.emoji,
+    });
+    await post.save();
     res.status(201).json({ data: "like added" });
   } catch (err) {
     res.json({ data: err });
@@ -43,25 +47,33 @@ async function matches(req, res) {
 
     for (post in posts) {
       posts[post].likes.forEach(
-        (elem) => agree.push(elem.username) && total.push(elem.username)
+        (elem) =>
+          agree.push([elem.username, elem.emoji]) &&
+          total.push([elem.username, elem.emoji])
       );
     }
 
     for (post in posts) {
       posts[post].dislikes.forEach(
-        (elem) => disagree.push(elem.username) && total.push(elem.username)
+        (elem) =>
+          disagree.push([elem.username, elem.emoji]) &&
+          total.push([elem.username, elem.emoji])
       );
     }
 
     for (post in dislikedPosts) {
       dislikedPosts[post].dislikes.forEach(
-        (elem) => agree.push(elem.username) && total.push(elem.username)
+        (elem) =>
+          agree.push([elem.username, elem.emoji]) &&
+          total.push([elem.username, elem.emoji])
       );
     }
 
     for (post in dislikedPosts) {
       dislikedPosts[post].likes.forEach(
-        (elem) => disagree.push(elem.username) && total.push(elem.username)
+        (elem) =>
+          disagree.push([elem.username, elem.emoji]) &&
+          total.push([elem.username, elem.emoji])
       );
     }
 
@@ -86,33 +98,31 @@ async function matches(req, res) {
     let values = [];
     Object.entries(countedAgrees).forEach(([k, v]) => {
       let perc = v / countedTotal[k];
-      values.push(k, perc);
+      values.push(k.split(","), perc);
     });
 
-    values = values.sort(function (a, b) {
-      return b[1] - a[1];
-    });
+    values = values.flat();
 
     matches = values.reduce(function (result, value, index, array) {
-      if (index % 2 === 0) result.push(array.slice(index, index + 2));
+      if (index % 3 === 0) result.push(array.slice(index, index + 3));
       return result;
     }, []);
 
     matches = matches.sort(function (a, b) {
-      return b[1] - a[1];
+      return b[2] - a[2];
     });
 
     matches = [].concat.apply([], matches);
     let index = matches.indexOf(req.user.username);
-    matches.splice(index, 2);
+    matches.splice(index, 3);
 
     matches = matches.reduce(function (result, value, index, array) {
-      if (index % 2 === 0) result.push(array.slice(index, index + 2));
+      if (index % 3 === 0) result.push(array.slice(index, index + 3));
       return result;
     }, []);
 
     matches = matches.slice(0, 4);
 
-    res.status(200).json({ matches });
+    res.status(200).json({ countedAgrees, matches });
   } catch (err) {}
 }

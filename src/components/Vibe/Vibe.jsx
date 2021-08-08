@@ -12,8 +12,8 @@ export default function Vibe({
 
   return (
     <div className="vibe">
-      {matches.length > 3 &&
-      <Card.Group itemsPerRow={4}>
+      {matches.length > 0 &&
+      <Card.Group itemsPerRow={matches.length}>
       {matches.map((match) => {
         return (
           <VibeCard

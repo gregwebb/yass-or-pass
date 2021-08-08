@@ -3,11 +3,13 @@ const mongoose = require("mongoose");
 const likeSchema = mongoose.Schema({
   username: String,
   userId: { type: mongoose.Schema.Types.ObjectId },
+  emoji: String,
 });
 
 const dislikeSchema = mongoose.Schema({
   username: String,
   userId: { type: mongoose.Schema.Types.ObjectId },
+  emoji: String,
 });
 
 const postSchema = new mongoose.Schema({

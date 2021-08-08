@@ -4,6 +4,7 @@ import PostCard from "../PostCard/PostCard";
 export default function PostFeed({
   posts, user, addLike, removeLike, addDislike, removeDislike
 }) {
+
   return (
     <div className = "posts">
 

@@ -2,14 +2,21 @@
   font-size: 12pt;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
   .name {
-    font-size: 10pt;
+    display: none;
   }
 }
 
-@media only screen and (max-width: 400px) {
-    .name {
-      font-size: 7pt;
-    }
-  }
+.emoji-small {
+  border-radius: 50%;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgb(54, 20, 54);
+  background: #a52a6e;
+  width: 48px;
+  height: 48px;
+  line-height: 42px;
+  font-size: 24pt;
+  text-align: center;
+}
