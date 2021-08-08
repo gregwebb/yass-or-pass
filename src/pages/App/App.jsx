@@ -3,7 +3,9 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
+import ProfilePage from "../ProfilePage/ProfilePage";
 import Feed from "../Feed/Feed";
+import "./App.css";
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
@@ -29,6 +31,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Feed handleLogout={handleLogout} user={user} />
+            </Route>
+            <Route path="/:username">
+              <ProfilePage user={user} handleLogout={handleLogout} />
             </Route>
           </Switch>
         ) : (

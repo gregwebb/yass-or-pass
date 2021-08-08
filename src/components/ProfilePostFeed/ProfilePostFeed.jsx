@@ -1,5 +1,5 @@
 import React from "react";
-import PostCard from "../PostCard/PostCard";
+import ProfilePostCard from "../ProfilePostCard/ProfilePostCard";
 
 export default function PostFeed({
   posts,
@@ -9,13 +9,12 @@ export default function PostFeed({
   addDislike,
   removeDislike,
   profileUser,
-  deletePost,
 }) {
   return (
     <div className="posts">
       {posts.map((post) => {
         return (
-          <PostCard
+          <ProfilePostCard
             post={post}
             user={user}
             addLike={addLike}
@@ -23,7 +22,6 @@ export default function PostFeed({
             addDislike={addDislike}
             removeDislike={removeDislike}
             profileUser={profileUser}
-            deletePost={deletePost}
           />
         );
       })}

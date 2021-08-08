@@ -1,0 +1,41 @@
+.profile-card {
+  padding: 5px 10% 0px;
+  width: 100%;
+  margin: auto;
+}
+
+@media only screen and (max-width: 400px) {
+  .profile-card {
+    padding: 5px 5px 0px;
+    width: 100%;
+    margin: auto;
+  }
+}
+
+.badge {
+  font-size: 14pt;
+  padding: 5px;
+}
+
+.badge-container {
+  display: inline-flex;
+}
+
+.profile-name {
+  width: 100%;
+  text-align: center;
+}
+
+.user-emoji {
+  border-radius: 50%;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgb(54, 20, 54);
+  background: #a52a6e;
+  width: 48px;
+  height: 48px;
+  line-height: 42px;
+  font-size: 24pt;
+  text-align: center;
+  margin: auto;
+}

@@ -1,5 +1,7 @@
 .name {
   font-size: 12pt;
+  width: 60%;
+  text-align: right;
 }
 
 @media only screen and (max-width: 500px) {
@@ -19,4 +21,9 @@
   line-height: 42px;
   font-size: 24pt;
   text-align: center;
+}
+
+.match-item {
+  width: 100%;
+  display: inline-flex;
 }

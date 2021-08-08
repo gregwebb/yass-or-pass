@@ -1,21 +1,33 @@
 import React from "react";
-import { Progress, Card, Icon, Button } from "semantic-ui-react";
-import * as postsAPI from "../../utils/postApi";
+import { Progress, Card, Icon, Button, Grid } from "semantic-ui-react";
+import "./ProfilePostCard.css";
 
-function PostCard({
+function ProfilePostCard({
   post,
   addLike,
   removeLike,
   user,
   addDislike,
   removeDislike,
-  deletePost,
+  profileUser,
 }) {
   const liked = post.likes.findIndex((like) => like.username === user.username);
   const disliked = post.dislikes.findIndex(
     (dislike) => dislike.username === user.username
   );
-  const isOP = post.user._id === user._id ? true : false;
+  const profileLiked = post.likes.findIndex(
+    (like) => like.username === profileUser.username
+  );
+  const profileDisliked = post.dislikes.findIndex(
+    (dislike) => dislike.username === profileUser.username
+  );
+  const bothLiked = liked > -1 && profileLiked > -1 ? true : false;
+  const bothDisliked = disliked > -1 && profileDisliked > -1 ? true : false;
+  const disagree =
+    (disliked > -1 && profileLiked > -1) || (liked > -1 && profileDisliked > -1)
+      ? true
+      : false;
+  const noVote = disliked < 0 && liked < 0 ? true : false;
   const clickHandler =
     liked > -1
       ? () => removeLike(post.likes[liked]._id)
@@ -30,10 +42,10 @@ function PostCard({
       : disliked > -1
       ? () => removeDislike(post.dislikes[disliked]._id)
       : null;
-  const deleteHandler = isOP ? () => deletePost(post._id) : () => null;
 
   const likeIcon = liked > -1 ? "thumbs up" : "thumbs up outline";
   const dislikeIcon = disliked > -1 ? "thumbs down" : "thumbs down outline";
+  const profileLikeIcon = profileLiked > -1 ? "thumbs up" : "thumbs down";
   const likeInfo = liked > -1 ? true : disliked > -1 ? true : null;
   const likeCount = post.likes.length;
   const dislikeCount = post.dislikes.length;
@@ -55,24 +67,29 @@ function PostCard({
         <Card.Description>{post.content}</Card.Description>
         <Card.Description textAlign={"right"}>
           <div>
-            {!isOP && (
-              <Button href={`/${post.user.username}`} color="blue">
-                asked by {post.user.username}
-              </Button>
-            )}{" "}
+            {bothLiked && <Button positive>You both say yassss! 🙌🏾</Button>}
           </div>
         </Card.Description>
         <Card.Description textAlign={"right"}>
           <div>
-            {isOP && (
-              <Button onClick={deleteHandler} negative>
-                delete question
-              </Button>
+            {bothDisliked && <Button negative>You both say passss! 🙅‍♀️</Button>}
+          </div>
+        </Card.Description>
+        <Card.Description textAlign={"right"}>
+          <div>
+            {disagree && (
+              <Button color="blue">You disagree on this... 🤷‍♀️</Button>
+            )}
+          </div>
+        </Card.Description>
+        <Card.Description textAlign={"right"}>
+          <div>
+            {noVote && (
+              <Button color="yellow">You haven't voted yet! 🤔</Button>
             )}
           </div>
         </Card.Description>
       </Card.Content>
-
       <Card.Content extra>
         {likeInfo ? (
           <true>
@@ -88,7 +105,10 @@ function PostCard({
                 color="blue"
                 onClick={resetClickHandler}
               />
-              <div className="vote-count">({votes} users have voted)</div>
+              <div className="vote-count">
+                {profileUser.username}'s vote :
+                <Icon name={profileLikeIcon} size="large" color="purple" />
+              </div>
             </div>
           </true>
         ) : (
@@ -112,4 +132,4 @@ function PostCard({
   );
 }
 
-export default PostCard;
+export default ProfilePostCard;

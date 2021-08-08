@@ -1,28 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "../../components/Navigation/Navigation";
-import AddPostForm from "../../components/AddPostForm/AddPostForm";
-import "./Feed.css";
-import PostFeed from "../../components/PostFeed/PostFeed";
+import "../Feed/Feed.css";
+import ProfilePostFeed from "../../components/ProfilePostFeed/ProfilePostFeed";
 import * as postsAPI from "../../utils/postApi";
 import * as userService from "../../utils/userService";
-import Vibe from "../../components/Vibe/Vibe";
+import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import * as likesAPI from "../../utils/likesApi";
 import * as dislikesAPI from "../../utils/dislikesApi";
+import { useParams } from "react-router-dom";
 
-export default function Feed({ user, handleLogout }) {
+export default function ProfilePage({ user, handleLogout }) {
   const [posts, setPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]);
+  const [dislikedPosts, setDislikedPosts] = useState([]);
   const [users, setUsers] = useState([]);
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  async function deletePost(post) {
-    try {
-      const data = await postsAPI.deletePost(post);
-      getPosts();
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  const [profileUser, setProfileUser] = useState({});
+  const [matchPercent, setMatchPercent] = useState({});
+  const { username } = useParams();
+  const [error, setError] = useState("");
 
   async function handleAddPost(post) {
     setLoading(true);
@@ -41,12 +38,23 @@ export default function Feed({ user, handleLogout }) {
     }
   }
 
-  async function getPosts() {
+  async function getProfile() {
     try {
-      const data = await postsAPI.getAll();
-      setPosts([...data.posts]);
+      const data = await userService.getProfile(username);
+      console.log(data, " data");
+
+      // data is the response from the controller function /api/users/profile
+      // go to the controller function and look at what is returned
+      // posts and user are the properties on the data object
+      setLoading(() => false);
+      setPosts(() => [...data.posts]);
+      setLikedPosts(() => [...data.likedPosts]);
+      setDislikedPosts(() => [...data.dislikedPosts]);
+      setProfileUser(() => data.user);
+      setMatchPercent(() => data.result);
     } catch (err) {
-      console.log(err, " this is the error");
+      console.log(err);
+      setError("Profile does not Exist");
     }
   }
 
@@ -63,7 +71,7 @@ export default function Feed({ user, handleLogout }) {
     try {
       const data = await likesAPI.create(postId);
       console.log(data, " this is from addLike");
-      getPosts();
+      getProfile();
     } catch (err) {
       console.log(err);
     }
@@ -72,7 +80,7 @@ export default function Feed({ user, handleLogout }) {
   async function removeLike(likeID) {
     try {
       const data = await likesAPI.removeLike(likeID);
-      getPosts();
+      getProfile();
     } catch (err) {
       console.log(err);
     }
@@ -82,7 +90,7 @@ export default function Feed({ user, handleLogout }) {
     try {
       const data = await dislikesAPI.create(postId);
       console.log(data, " this is from addDislike");
-      getPosts();
+      getProfile();
     } catch (err) {
       console.log(err);
     }
@@ -91,14 +99,14 @@ export default function Feed({ user, handleLogout }) {
   async function removeDislike(dislikeID) {
     try {
       const data = await dislikesAPI.removeDislike(dislikeID);
-      getPosts();
+      getProfile();
     } catch (err) {
       console.log(err);
     }
   }
 
   useEffect(() => {
-    getPosts();
+    getProfile();
     getUsers();
     getMatches();
   }, []);
@@ -106,17 +114,24 @@ export default function Feed({ user, handleLogout }) {
   return (
     <div className="feed-container">
       <Navigation user={user} handleLogout={handleLogout} />
-      <Vibe users={users} posts={posts} user={user} matches={matches} />
+      <ProfileCard
+        profileUser={profileUser}
+        posts={posts}
+        likedPosts={likedPosts}
+        dislikedPosts={dislikedPosts}
+        user={user}
+        matches={matches}
+        matchPercent={matchPercent}
+      />
       <div className="post-container">
-        <AddPostForm handleAddPost={handleAddPost} user={user} />
-        <PostFeed
+        <ProfilePostFeed
           posts={posts}
           user={user}
+          profileUser={profileUser}
           addLike={addLike}
           removeLike={removeLike}
           addDislike={addDislike}
           removeDislike={removeDislike}
-          deletePost={deletePost}
         />
       </div>
     </div>
