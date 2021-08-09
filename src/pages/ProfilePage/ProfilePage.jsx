@@ -13,10 +13,23 @@ export default function ProfilePage({ user, handleLogout }) {
   const [likedPosts, setLikedPosts] = useState([]);
   const [dislikedPosts, setDislikedPosts] = useState([]);
   const [matches, setMatches] = useState([]);
+  const [rivals, setRivals] = useState([]);
+  const [besties, setBesties] = useState([]);
   const [profileUser, setProfileUser] = useState({});
   const [matchPercent, setMatchPercent] = useState({});
   const { username } = useParams();
   const [error, setError] = useState("");
+
+  async function getMatches() {
+    try {
+      const data = await likesAPI.getMatches();
+      setMatches([...data.matches]);
+      setRivals([...data.rivals]);
+      setBesties([...data.besties]);
+    } catch (err) {
+      console.log(err, " this is the error");
+    }
+  }
 
   async function getProfile() {
     try {
@@ -27,6 +40,7 @@ export default function ProfilePage({ user, handleLogout }) {
       setDislikedPosts(() => [...data.dislikedPosts]);
       setProfileUser(() => data.user);
       setMatchPercent(() => data.result);
+      getMatches();
     } catch (err) {
       console.log(err);
       setError("Profile does not Exist");
@@ -73,6 +87,7 @@ export default function ProfilePage({ user, handleLogout }) {
 
   useEffect(() => {
     getProfile();
+    getMatches();
   }, []);
 
   return (
@@ -86,6 +101,8 @@ export default function ProfilePage({ user, handleLogout }) {
         user={user}
         matches={matches}
         matchPercent={matchPercent}
+        rivals={rivals}
+        besties={besties}
       />
       <div className="post-container">
         <ProfilePostFeed

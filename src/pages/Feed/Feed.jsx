@@ -18,6 +18,7 @@ export default function Feed({ user, handleLogout }) {
     try {
       await postsAPI.deletePost(post);
       getPosts();
+      getMatches();
     } catch (err) {
       console.log(err);
     }
@@ -25,8 +26,8 @@ export default function Feed({ user, handleLogout }) {
 
   async function handleAddPost(post) {
     const data = await postsAPI.create(post);
-    console.log(data);
-    setPosts((posts) => [data.post, ...posts]);
+    getMatches();
+    getPosts();
   }
 
   async function getMatches() {
@@ -61,6 +62,7 @@ export default function Feed({ user, handleLogout }) {
       const data = await likesAPI.create(postId);
       console.log(data, " this is from addLike");
       getPosts();
+      getMatches();
     } catch (err) {
       console.log(err);
     }
@@ -70,6 +72,7 @@ export default function Feed({ user, handleLogout }) {
     try {
       await likesAPI.removeLike(likeID);
       getPosts();
+      getMatches();
     } catch (err) {
       console.log(err);
     }
@@ -80,6 +83,7 @@ export default function Feed({ user, handleLogout }) {
       const data = await dislikesAPI.create(postId);
       console.log(data, " this is from addDislike");
       getPosts();
+      getMatches();
     } catch (err) {
       console.log(err);
     }
@@ -89,6 +93,7 @@ export default function Feed({ user, handleLogout }) {
     try {
       await dislikesAPI.removeDislike(dislikeID);
       getPosts();
+      getMatches();
     } catch (err) {
       console.log(err);
     }
@@ -114,6 +119,7 @@ export default function Feed({ user, handleLogout }) {
           addDislike={addDislike}
           removeDislike={removeDislike}
           deletePost={deletePost}
+          matches={matches}
         />
       </div>
     </div>

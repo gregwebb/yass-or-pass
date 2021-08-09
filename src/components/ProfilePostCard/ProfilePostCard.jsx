@@ -1,5 +1,5 @@
 import React from "react";
-import { Progress, Card, Icon, Button, Grid } from "semantic-ui-react";
+import { Progress, Card, Icon, Button } from "semantic-ui-react";
 import "./ProfilePostCard.css";
 
 function ProfilePostCard({
@@ -43,6 +43,7 @@ function ProfilePostCard({
       ? () => removeDislike(post.dislikes[disliked]._id)
       : null;
 
+  const isUser = profileUser._id === user._id ? true : false;
   const likeIcon = liked > -1 ? "thumbs up" : "thumbs up outline";
   const dislikeIcon = disliked > -1 ? "thumbs down" : "thumbs down outline";
   const profileLikeIcon = profileLiked > -1 ? "thumbs up" : "thumbs down";
@@ -67,12 +68,22 @@ function ProfilePostCard({
         <Card.Description>{post.content}</Card.Description>
         <Card.Description textAlign={"right"}>
           <div>
-            {bothLiked && <Button positive>You both say yassss! 🙌🏾</Button>}
+            {bothLiked && (
+              <Button positive>
+                <div>{!isUser && <span>You both say yassss! 🙌🏾</span>}</div>
+                <div>{isUser && <span>You say yassss! 🙌🏾</span>}</div>
+              </Button>
+            )}
           </div>
         </Card.Description>
         <Card.Description textAlign={"right"}>
           <div>
-            {bothDisliked && <Button negative>You both say passss! 🙅‍♀️</Button>}
+            {bothDisliked && (
+              <Button negative>
+                <div>{!isUser && <span>You both say passs! 🙅‍♀️</span>}</div>
+                <div>{isUser && <span>You say passs! 🙅‍♀️</span>}</div>
+              </Button>
+            )}
           </div>
         </Card.Description>
         <Card.Description textAlign={"right"}>

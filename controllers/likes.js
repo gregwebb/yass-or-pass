@@ -121,8 +121,11 @@ async function matches(req, res) {
       return result;
     }, []);
 
+    rivals = matches.slice(matches.length-2, matches.length);
+    besties = matches.slice(0,2);
+
     matches = matches.slice(0, 4);
 
-    res.status(200).json({ countedAgrees, matches });
+    res.status(200).json({ countedAgrees, matches, rivals, besties });
   } catch (err) {}
 }

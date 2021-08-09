@@ -1,0 +1,37 @@
+.name {
+    width: 100%;
+    text-align: center;
+  }
+  
+  @media only screen and (max-width: 900px) {
+    .name {
+      font-size: 10pt;
+    }
+  }
+  
+  @media only screen and (max-width: 700px) {
+    .name {
+      font-size: 8pt;
+    }
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .name {
+      display: none;
+    }
+  }
+  
+  .emoji-small {
+    border-radius: 50%;
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgb(54, 20, 54);
+    background: #a52a6e;
+    width: 48px;
+    height: 48px;
+    line-height: 42px;
+    font-size: 24pt;
+    text-align: center;
+    margin: auto;
+  }
+  
