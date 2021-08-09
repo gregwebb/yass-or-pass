@@ -17,6 +17,7 @@ function ProfileCard({
 }) {
   const emojis = ["👻", "👽", "🧑", "👩", "👨", "🧓", "👵", "👴"];
   const isUser = profileUser._id === user._id ? true : false;
+  const zero = matchPercent[0]==="NaN" ? true : false;
 
   return (
     <div className="profile-card">
@@ -93,7 +94,7 @@ function ProfileCard({
             {!isUser && (
               <span>
                 <Icon name="handshake outline" size="large" color="purple" />
-                You and {profileUser.username} agree {matchPercent[0]}% of the
+                You and {profileUser.username} agree {!zero ? matchPercent[0] : 0}% of the
                 time.
               </span>
             )}
