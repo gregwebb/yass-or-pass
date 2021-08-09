@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Icon } from "semantic-ui-react";
 import "./VibeCard.css";
 
-function VibeCard({ user, posts, users, match, matches }) {
+function VibeCard({ match}) {
   const emojis = ["👻", "👽", "🧑", "👩", "👨", "🧓", "👵", "👴"];
 
   return (

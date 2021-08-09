@@ -1,6 +1,5 @@
 import React from "react";
 import { Progress, Card, Icon, Button } from "semantic-ui-react";
-import * as postsAPI from "../../utils/postApi";
 
 function PostCard({
   post,
@@ -75,7 +74,7 @@ function PostCard({
 
       <Card.Content extra>
         {likeInfo ? (
-          <true>
+          <div>
             <div className="vote">
               <Progress percent={likePercent} color={barColor} size="tiny" />
               <Icon name={likeIcon} size="small" color="green" />
@@ -90,9 +89,9 @@ function PostCard({
               />
               <div className="vote-count">({votes} users have voted)</div>
             </div>
-          </true>
+          </div>
         ) : (
-          <false>
+          <div>
             <Icon
               name={likeIcon}
               size="large"
@@ -105,7 +104,7 @@ function PostCard({
               color="red"
               onClick={dislikeClickHandler}
             />
-          </false>
+          </div>
         )}
       </Card.Content>
     </Card>

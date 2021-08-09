@@ -13,11 +13,10 @@ export default function Feed({ user, handleLogout }) {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
   const [matches, setMatches] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   async function deletePost(post) {
     try {
-      const data = await postsAPI.deletePost(post);
+      await postsAPI.deletePost(post);
       getPosts();
     } catch (err) {
       console.log(err);
@@ -25,11 +24,9 @@ export default function Feed({ user, handleLogout }) {
   }
 
   async function handleAddPost(post) {
-    setLoading(true);
     const data = await postsAPI.create(post);
     console.log(data);
     setPosts((posts) => [data.post, ...posts]);
-    setLoading(false);
   }
 
   async function getMatches() {
@@ -71,7 +68,7 @@ export default function Feed({ user, handleLogout }) {
 
   async function removeLike(likeID) {
     try {
-      const data = await likesAPI.removeLike(likeID);
+      await likesAPI.removeLike(likeID);
       getPosts();
     } catch (err) {
       console.log(err);
@@ -90,7 +87,7 @@ export default function Feed({ user, handleLogout }) {
 
   async function removeDislike(dislikeID) {
     try {
-      const data = await dislikesAPI.removeDislike(dislikeID);
+      await dislikesAPI.removeDislike(dislikeID);
       getPosts();
     } catch (err) {
       console.log(err);

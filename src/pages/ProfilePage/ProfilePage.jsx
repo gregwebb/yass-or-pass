@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Navigation from "../../components/Navigation/Navigation";
 import "../Feed/Feed.css";
 import ProfilePostFeed from "../../components/ProfilePostFeed/ProfilePostFeed";
-import * as postsAPI from "../../utils/postApi";
 import * as userService from "../../utils/userService";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import * as likesAPI from "../../utils/likesApi";
@@ -13,40 +12,16 @@ export default function ProfilePage({ user, handleLogout }) {
   const [posts, setPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
   const [dislikedPosts, setDislikedPosts] = useState([]);
-  const [users, setUsers] = useState([]);
   const [matches, setMatches] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [profileUser, setProfileUser] = useState({});
   const [matchPercent, setMatchPercent] = useState({});
   const { username } = useParams();
   const [error, setError] = useState("");
 
-  async function handleAddPost(post) {
-    setLoading(true);
-    const data = await postsAPI.create(post);
-    console.log(data);
-    setPosts((posts) => [data.post, ...posts]);
-    setLoading(false);
-  }
-
-  async function getMatches() {
-    try {
-      const data = await likesAPI.getMatches();
-      setMatches([...data.matches]);
-    } catch (err) {
-      console.log(err, " this is the error");
-    }
-  }
-
   async function getProfile() {
     try {
       const data = await userService.getProfile(username);
       console.log(data, " data");
-
-      // data is the response from the controller function /api/users/profile
-      // go to the controller function and look at what is returned
-      // posts and user are the properties on the data object
-      setLoading(() => false);
       setPosts(() => [...data.posts]);
       setLikedPosts(() => [...data.likedPosts]);
       setDislikedPosts(() => [...data.dislikedPosts]);
@@ -55,15 +30,6 @@ export default function ProfilePage({ user, handleLogout }) {
     } catch (err) {
       console.log(err);
       setError("Profile does not Exist");
-    }
-  }
-
-  async function getUsers() {
-    try {
-      const data = await userService.getAll();
-      setUsers([...data.users]);
-    } catch (err) {
-      console.log(err, " this is the error");
     }
   }
 
@@ -104,12 +70,6 @@ export default function ProfilePage({ user, handleLogout }) {
       console.log(err);
     }
   }
-
-  useEffect(() => {
-    getProfile();
-    getUsers();
-    getMatches();
-  }, []);
 
   return (
     <div className="feed-container">

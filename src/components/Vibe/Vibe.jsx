@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import VibeCard from "../VibeCard/VibeCard";
-import * as likesAPI from "../../utils/likesApi";
-import { Item, Label, Card } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 
-export default function Vibe({ users, user, matches }) {
+export default function Vibe({ user, matches }) {
   const [posts, setPosts] = useState([]);
 
   return (

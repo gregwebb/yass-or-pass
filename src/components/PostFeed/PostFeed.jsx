@@ -17,6 +17,7 @@ export default function PostFeed({
         return (
           <PostCard
             post={post}
+            key={post._id}
             user={user}
             addLike={addLike}
             removeLike={removeLike}
