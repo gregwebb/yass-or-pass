@@ -73,7 +73,7 @@ function ProfilePostCard({
                 <div>{!isUser && <span>You both say yassss! 🙌🏾</span>}</div>
                 <div>{isUser && <span>You say yassss! 🙌🏾</span>}</div>
               </Button>
-            )}
+            )} 
           </div>
         </Card.Description>
         <Card.Description textAlign={"right"}>
