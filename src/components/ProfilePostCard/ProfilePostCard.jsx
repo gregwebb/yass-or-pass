@@ -1,5 +1,5 @@
 import React from "react";
-import { Progress, Card, Icon, Button } from "semantic-ui-react";
+import { Progress, Card, Icon, Button, Label } from "semantic-ui-react";
 import "./ProfilePostCard.css";
 
 function ProfilePostCard({
@@ -73,7 +73,7 @@ function ProfilePostCard({
                 <div>{!isUser && <span>You both say yassss! 🙌🏾</span>}</div>
                 <div>{isUser && <span>You say yassss! 🙌🏾</span>}</div>
               </Button>
-            )} 
+            )}
           </div>
         </Card.Description>
         <Card.Description textAlign={"right"}>
@@ -103,7 +103,7 @@ function ProfilePostCard({
       </Card.Content>
       <Card.Content extra>
         {likeInfo ? (
-          <true>
+          <div>
             <div className="vote">
               <Progress percent={likePercent} color={barColor} size="tiny" />
               <Icon name={likeIcon} size="small" color="green" />
@@ -117,13 +117,23 @@ function ProfilePostCard({
                 onClick={resetClickHandler}
               />
               <div className="vote-count">
-                {profileUser.username}'s vote :
-                <Icon name={profileLikeIcon} size="large" color="purple" />
+                {!isUser && (
+                  <Label as="a" color="white">
+                    <span className="badge">{profileUser.username} says</span>
+                    <Label.Detail>
+                      <Icon
+                        name={profileLikeIcon}
+                        size="large"
+                        color="purple"
+                      />
+                    </Label.Detail>
+                  </Label>
+                )}
               </div>
             </div>
-          </true>
+          </div>
         ) : (
-          <false>
+          <div>
             <Icon
               name={likeIcon}
               size="large"
@@ -136,7 +146,7 @@ function ProfilePostCard({
               color="red"
               onClick={dislikeClickHandler}
             />
-          </false>
+          </div>
         )}
       </Card.Content>
     </Card>
