@@ -6,11 +6,7 @@ function ProfileCard({
   likedPosts,
   dislikedPosts,
   profileUser,
-  user,
   posts,
-  users,
-  match,
-  matches,
   matchPercent,
 }) {
   const emojis = ["👻", "👽", "🧑", "👩", "👨", "🧓", "👵", "👴"];

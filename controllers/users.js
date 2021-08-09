@@ -33,27 +33,27 @@ async function profile(req, res) {
     let agree = [];
     let disagree = [];
 
-    for (post in myLikedPosts) {
-      myLikedPosts[post].likes.forEach(
+    for (post in likedPosts) {
+      likedPosts[post].likes.forEach(
         (elem) => agree.push(elem.username) && total.push(elem.username)
       );
     }
 
-    for (post in myLikedPosts) {
-      myLikedPosts[post].dislikes.forEach(
+    for (post in likedPosts) {
+      likedPosts[post].dislikes.forEach(
         (elem) => disagree.push(elem.username) && total.push(elem.username)
       );
     }
 
-    for (post in myDislikedPosts) {
-      myDislikedPosts[post].dislikes.forEach(
+    for (post in dislikedPosts) {
+      dislikedPosts[post].dislikes.forEach(
         (elem) =>
-          agree.push(elem.username) && total.push([elem.username, elem.emoji])
+          agree.push(elem.username) && total.push(elem.username)
       );
     }
 
-    for (post in myDislikedPosts) {
-      myDislikedPosts[post].likes.forEach(
+    for (post in dislikedPosts) {
+      dislikedPosts[post].likes.forEach(
         (elem) => disagree.push(elem.username) && total.push(elem.username)
       );
     }
@@ -78,7 +78,7 @@ async function profile(req, res) {
 
     result = [
       (
-        (countedAgrees[user.username] / countedTotal[user.username]) *
+        (countedAgrees[req.user.username] / countedTotal[req.user.username]) *
         100
       ).toFixed(2),
     ];
@@ -89,6 +89,8 @@ async function profile(req, res) {
       likedPosts: likedPosts,
       dislikedPosts: dislikedPosts,
       result: result,
+      countedAgrees: countedAgrees,
+      countedTotal: countedTotal
     });
   } catch (err) {
     console.log(err);
