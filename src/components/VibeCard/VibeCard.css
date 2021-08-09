@@ -1,10 +1,21 @@
 .name {
-  font-size: 12pt;
-  width: 60%;
-  text-align: right;
+  width: 100%;
+  text-align: center;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 900px) {
+  .name {
+    font-size: 10pt;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .name {
+    font-size: 8pt;
+  }
+}
+
+@media only screen and (max-width: 600px) {
   .name {
     display: none;
   }
@@ -21,9 +32,5 @@
   line-height: 42px;
   font-size: 24pt;
   text-align: center;
-}
-
-.match-item {
-  width: 100%;
-  display: inline-flex;
+  margin: auto;
 }
