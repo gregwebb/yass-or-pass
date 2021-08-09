@@ -71,6 +71,10 @@ export default function ProfilePage({ user, handleLogout }) {
     }
   }
 
+  useEffect(() => {
+    getProfile();
+  }, []);
+
   return (
     <div className="feed-container">
       <Navigation user={user} handleLogout={handleLogout} />
