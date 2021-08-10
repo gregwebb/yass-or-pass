@@ -1,39 +1,49 @@
-## Setup 
+## Yass or Pass 
 
-1. Clone the repo
-2. Rename the folder to your Project, you can use the `mv` command like `mv mern-boilerplate yourprojectname`
-3. Delete the `.git` file, when you are in the root of the file, you can press `ls` and you should see a `.git` file, then go ahead and run `rm -rf .git`
+Yass or Pass is a MERN stack application that allows users to share their thoughts or ask about topics via binary polling. It is intended to be a fun activity where users can see what everyone thinks and see users who agree with them the most often.
 
 
-#### Setup your git repo
+#### Screenshots:
 
-1. go to github and create your github and create a repo (Without a readme or liscense you can add that later!)
-2.  Then follow the directions on github that says ```…or create a new repository on the command line```
+##### Home page on desktop
 
-it should look like this
+![Desktop Home](https://github.com/gregwebb/yass-or-pass/blob/master/public/screenshots/desktop-home.png?raw=true)
 
-```
-git init
-git add .
-git commit -m "first commit"
-git remote add origin git@git.generalassemb.ly:SEI-CC/test.git // this will be whatever your address will be
-git push -u origin master
-```
+##### Home page on mobile
 
-#### Setup the App
+![Desktop Home](https://github.com/gregwebb/yass-or-pass/blob/master/public/screenshots/mobile-home.png?raw=true)
 
-```npm install```
+##### Profile page on desktop (3rd person view)
 
-*DOTENV*
+![Desktop Home](https://github.com/gregwebb/yass-or-pass/blob/master/public/screenshots/desktop-profile-other.png?raw=true)
 
-`touch .env`
+##### Profile page on mobile (3rd person view)
 
-add your variables
+![Desktop Home](https://github.com/gregwebb/yass-or-pass/blob/master/public/screenshots/mobile-profile-other.png?raw=true)
 
-```
-DATABASE_URL=mongodb://localhost:27017/testagramV2
-BUCKET_NAME=catcollectorone
-SECRET=mysecretforjwt
-```
+##### Profile page on desktop (1st person view)
 
-The app is configured, to use those respective key names for the database, jwt secret and aws bucket, of course you'll have your own values
+![Desktop Home](https://github.com/gregwebb/yass-or-pass/blob/master/public/screenshots/desktop-profile.png?raw=true)
+
+##### Profile page on mobile (1st person view)
+
+![Desktop Home](https://github.com/gregwebb/yass-or-pass/blob/master/public/screenshots/mobile-profile.png?raw=true)
+
+
+
+#### Technologies Used:
+
+MongoDB
+ExpressJS
+React
+NodeJS
+
+Deployed via Heroku
+
+#### Getting Started:
+
+##### Link to application:
+https://yassorpass.herokuapp.com
+
+##### Link to Trello:
+https://trello.com/b/ijpuMO7X/yass-or-pass
